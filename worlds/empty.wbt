@@ -1,14 +1,74 @@
 #VRML_SIM R2019a utf8
 WorldInfo {
-  info [
-  ]
 }
 Viewpoint {
-  orientation -0.7 0.7 0.2 0.75
-  position 1.2 1.6 2.3
-
+  orientation 0.2439193317682795 0.9340069591997092 0.26102559214802806 4.553654155926708
+  position -5.327333113489684 3.74495882084831 -0.32481581976793084
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
+}
+Floor {
+}
+Solid {
+  translation 0 0.35 0
+  rotation 1 0 0 0.349
+  children [
+    DEF base Group {
+      children [
+        DEF tube_ Shape {
+          appearance DEF color1 PBRAppearance {
+            baseColor 0 0 1
+          }
+          geometry Cylinder {
+            height 0.9
+            radius 0.02
+          }
+        }
+        Transform {
+          translation 0.5 0 0
+          children [
+            USE tube_
+          ]
+        }
+        Transform {
+          translation 0.25 0 0
+          rotation 0 0 1 1.5707
+          children [
+            DEF tube2 Shape {
+              appearance USE color1
+              geometry Cylinder {
+                height 0.5
+                radius 0.02
+              }
+            }
+          ]
+        }
+      ]
+    }
+    Group {
+      children [
+        Transform {
+          translation 0 0.2 0.5
+          rotation 1 0 0 -0.68
+          children [
+            USE base
+          ]
+        }
+      ]
+    }
+  ]
+}
+Solid {
+  translation 0.25 0.79 0.25
+  children [
+    Shape {
+      appearance USE color1
+      geometry Box {
+        size 0.6 0.02 0.6
+      }
+    }
+  ]
+  name "solid(1)"
 }
