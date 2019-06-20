@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.057510286957080485 0.9790598674364759 0.19528016506902227 2.54881897823378
-  position 4.070428105501969 2.0890982804396674 -5.368951484837934
+  orientation 0.28826625158922 0.8843413942253385 0.3672095677597262 4.338779857085355
+  position -1.3166237429674588 2.2860580205260095 -0.4990719940106455
 }
 TexturedBackground {
 }
@@ -99,14 +99,35 @@ Solid {
                 anchor 0 0.1 0
               }
               endPoint Solid {
+                translation 0 0.12 0
+                rotation 1 0 0 1.5707
                 children [
                   Group {
                     children [
-                      Shape {
+                      DEF helice Shape {
+                        appearance USE color2
+                        geometry Cylinder {
+                          height 0.2
+                          radius 0.02
+                        }
+                      }
+                      Transform {
+                        rotation 0 0 1 1.5707
+                        children [
+                          USE helice
+                        ]
+                      }
+                      Transform {
+                        rotation 0 0 1 2.35
+                        children [
+                          USE helice
+                        ]
                       }
                     ]
                   }
                 ]
+                physics Physics {
+                }
               }
             }
             HingeJoint {
@@ -116,7 +137,7 @@ Solid {
               endPoint Solid {
                 translation 0 -0.15 0
                 children [
-                  Shape {
+                  DEF cilinder2 Shape {
                     appearance USE color2
                     geometry Cylinder {
                       height 0.1
@@ -136,6 +157,8 @@ Solid {
                   }
                 ]
                 name "solid(1)"
+                physics Physics {
+                }
               }
             }
           ]
