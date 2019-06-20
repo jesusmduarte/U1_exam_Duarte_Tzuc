@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.2439193317682795 0.9340069591997092 0.26102559214802806 4.553654155926708
-  position -5.327333113489684 3.74495882084831 -0.32481581976793084
+  orientation -0.057510286957080485 0.9790598674364759 0.19528016506902227 2.54881897823378
+  position 4.070428105501969 2.0890982804396674 -5.368951484837934
 }
 TexturedBackground {
 }
@@ -62,12 +62,85 @@ Solid {
 }
 Solid {
   translation 0.25 0.79 0.25
+  rotation -1 0 0 2.9802322387695313e-08
   children [
     Shape {
       appearance USE color1
       geometry Box {
         size 0.6 0.02 0.6
       }
+    }
+    Transform {
+      translation 0 0.165 0
+      children [
+        Shape {
+          appearance DEF color2 PBRAppearance {
+            baseColor 0 1 0
+          }
+          geometry Cylinder {
+            height 0.3
+            radius 0.03
+          }
+        }
+        Transform {
+          translation 0 0.2 0
+          rotation 0 0 1 1.5707
+          children [
+            Shape {
+              appearance USE color2
+              geometry Cylinder {
+                height 0.2
+                radius 0.05
+              }
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor 0 0.1 0
+              }
+              endPoint Solid {
+                children [
+                  Group {
+                    children [
+                      Shape {
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                anchor 0 -0.1 0
+              }
+              endPoint Solid {
+                translation 0 -0.15 0
+                children [
+                  Shape {
+                    appearance USE color2
+                    geometry Cylinder {
+                      height 0.1
+                      radius 0.01
+                    }
+                  }
+                  Transform {
+                    translation 0 -0.1 0
+                    children [
+                      Shape {
+                        appearance USE color2
+                        geometry Box {
+                          size 0.05 0.1 0.01
+                        }
+                      }
+                    ]
+                  }
+                ]
+                name "solid(1)"
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
   name "solid(1)"
